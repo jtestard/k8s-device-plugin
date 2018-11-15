@@ -158,6 +158,10 @@ func (m *NvidiaDevicePlugin) Allocate(ctx context.Context, reqs *pluginapi.Alloc
 			Envs: map[string]string{
 				"NVIDIA_VISIBLE_DEVICES": strings.Join(req.DevicesIDs, ","),
 			},
+			Annotations:map[string]string{
+				"deviceType": "nvidia.com/gpu",
+				"visibleDevices": strings.Join(req.DevicesIDs, ","),
+			},
 		}
 
 		for _, id := range req.DevicesIDs {
